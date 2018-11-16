@@ -136,10 +136,10 @@ func (a *RemoteAgent) GetWork() ([7]string, error) {
 		//fmt.Println("pow:",common.BytesToHash(n.Bytes()).Hex())
 
 		//the balance of the coinbase
-		//currentHeader:=a.chain.CurrentHeader()
-		//stateDb:=a.currentWork.state
-		//newStateDb,_:=state.New(currentHeader.Root,stateDb.Database())
-		//balance:=newStateDb.GetBalance(block.Header().Coinbase)
+		currentHeader:=a.chain.CurrentHeader()
+		stateDb:=a.currentWork.state
+		newStateDb,_:=state.New(currentHeader.Root,stateDb.Database())
+		balance:=newStateDb.GetBalance(block.Header().Coinbase)
 		//posTarget
 		balanceTarget:=new(big.Int).Mul(balance,big.NewInt(1))
 		balanceTarget=balanceTarget.Div(balanceTarget,big.NewInt(1000000000000000000))
